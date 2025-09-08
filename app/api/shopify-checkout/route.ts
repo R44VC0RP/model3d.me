@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
         variants: [
           {
             title: "Default",
-            price: "15.00",
+            price: "7.00",
             inventory_management: null,
             inventory_policy: "continue",
             fulfillment_service: "manual",

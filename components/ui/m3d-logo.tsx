@@ -26,3 +26,4 @@ export function M3DLogo({ className, width = 24, height = 27 }: M3DLogoProps) {
     </svg>
   )
 }
+

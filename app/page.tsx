@@ -210,7 +210,7 @@ export default function Home() {
                   onClick={handleCheckout}
                   disabled={isCheckingOut}
                 >
-                  Make it real with <M3DLogo className="text-white -mr-1 -ml-1" width={20} height={22} /> M3D  - $15
+                  Make it real with <M3DLogo className="text-white -mr-1 -ml-1" width={20} height={22} /> M3D  - $7
                 </Button>
                 
                 <div className="flex gap-3">
