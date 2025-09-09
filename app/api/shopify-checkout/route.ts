@@ -40,9 +40,15 @@ export async function POST(request: NextRequest) {
             alt: `3D Model Preview - ${stlFileName}`
           }
         ] : [],
+        options: [
+          {
+            name: "Size",
+            values: ["Small (40-60mm)", "Medium (60-90mm)", "Large (90-120mm)"]
+          }
+        ],
         variants: [
           {
-            title: "Default",
+            title: "Small (40-60mm)",
             price: "7.00",
             inventory_management: null,
             inventory_policy: "continue",
@@ -51,7 +57,34 @@ export async function POST(request: NextRequest) {
             requires_shipping: true,
             taxable: true,
             weight: 0,
-            weight_unit: "kg"
+            weight_unit: "kg",
+            option1: "Small (40-60mm)"
+          },
+          {
+            title: "Medium (60-90mm)",
+            price: "9.00",
+            inventory_management: null,
+            inventory_policy: "continue",
+            fulfillment_service: "manual",
+            inventory_quantity: 1000,
+            requires_shipping: true,
+            taxable: true,
+            weight: 0,
+            weight_unit: "kg",
+            option1: "Medium (60-90mm)"
+          },
+          {
+            title: "Large (90-120mm)",
+            price: "12.00",
+            inventory_management: null,
+            inventory_policy: "continue",
+            fulfillment_service: "manual",
+            inventory_quantity: 1000,
+            requires_shipping: true,
+            taxable: true,
+            weight: 0,
+            weight_unit: "kg",
+            option1: "Large (90-120mm)"
           }
         ],
         tags: "custom_3d_model, generated",
@@ -99,15 +132,16 @@ export async function POST(request: NextRequest) {
     }
 
     const product = await productResponse.json();
-    const variantId = product.product.variants[0].id;
-    console.log("✅ Product created with variant ID:", variantId);
+    const smallVariantId = product.product.variants[0].id; // Default to Small size
+    console.log("✅ Product created with variants:", product.product.variants.map((v: any) => ({ id: v.id, title: v.title, price: v.price })));
+    console.log("🎯 Using Small variant ID for draft order:", smallVariantId);
 
     // Now create a draft order using the product variant
     const draftOrderData = {
       draft_order: {
         line_items: [
           {
-            variant_id: variantId,
+            variant_id: smallVariantId,
             quantity: 1
           }
         ],

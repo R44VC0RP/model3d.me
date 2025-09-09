@@ -99,17 +99,20 @@ export function STLViewer({ stlUrl, className = "", onThumbnailReady }: STLViewe
         boundingBox.getCenter(center);
         geometry.translate(-center.x, -center.y, -center.z);
         
-        // Scale to fit view
+        // Scale to fit view (2x zoom)
         const size = new THREE.Vector3();
         boundingBox.getSize(size);
         const maxDimension = Math.max(size.x, size.y, size.z);
-        const scale = 2 / maxDimension;
+        const scale = 4 / maxDimension; // 2x zoom (was 2, now 4)
         mesh.scale.setScalar(scale);
+        
+        // Rotate 15 degrees to the right (around Y-axis)
+        mesh.rotation.y = THREE.MathUtils.degToRad(15);
         
         scene.add(mesh);
         
-        // Adjust camera position based on model size
-        camera.position.set(3, 3, 3);
+        // Adjust camera position closer for 2x zoom
+        camera.position.set(1.5, 1.5, 1.5);
         camera.lookAt(0, 0, 0);
         controls.update();
 

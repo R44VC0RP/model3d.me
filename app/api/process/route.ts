@@ -35,7 +35,8 @@ export async function POST(request: NextRequest) {
 
     // Connect to the Gradio client
     console.log("📡 Connecting to Hunyuan3D-2 client...");
-    const client = await Client.connect("tencent/Hunyuan3D-2");
+    // const client = await Client.connect("tencent/Hunyuan3D-2");
+    const client = await Client.connect("tencent/Hunyuan3D-2mini-Turbo");
     console.log("✅ Client connected successfully");
     
     console.log("🎯 Step 1: Starting shape generation with uploaded image...");

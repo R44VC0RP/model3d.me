@@ -153,6 +153,8 @@ export default function Home() {
               onFileSelect={handleFileSelect}
               selectedFile={selectedFile}
               generatedModel={generatedModel}
+              isProcessing={isProcessing}
+              progress={progress}
               onThumbnailReady={async (dataUrl) => {
                 try {
                   setThumbnailDataUrl(dataUrl);
@@ -236,7 +238,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-xs text-muted-foreground leading-snug">
-                  No refunds for models that are not correct. Please verify your model before buying.
+                  No refunds for models that are not correct. Please verify your model before buying. Each model will range from 40-120 millimeters in size.
                 </p>
               </div>
             ) : (
